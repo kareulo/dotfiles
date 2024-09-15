@@ -1,0 +1,69 @@
+{
+  "buffer_font_family": "Fira Mono",
+  "buffer_line_height": {
+    "custom": 2
+  },
+  "cursor_blink": false,
+  "formatter": "prettier",
+  "indent_guides": {
+    "enabled": false
+  },
+  "languages": {
+    "Python": {
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ],
+      "language_servers": ["pyright", "ruff"],
+      "tab_size": 4
+    }
+  },
+  "lsp": {
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "diagnosticMode": "workspace"
+        }
+      }
+    }
+  },
+  "project_panel": {
+    "auto_fold_dirs": false
+  },
+  "relative_line_numbers": true,
+  "restore_on_startup": "last_workspace",
+  "show_completion_documentation": false,
+  "soft_wrap": "editor_width",
+  "tab_size": 2,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "terminal": {
+    "blinking": "off",
+    "env": {
+      "EDITOR": "zed --wait"
+    }
+  },
+  "theme": {
+    "dark": "Ayu Dark",
+    "light": "Ayu Light",
+    "mode": "system"
+  },
+  "vim": {
+    "use_multiline_find": true,
+    "use_smartcase_find": true,
+    "use_system_clipboard": "always"
+  },
+  "vim_mode": true,
+  "wrap_guides": [80]
+}

@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -e
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+CONFIG="$HOME/.config"
+
+remove_if_exists() {
+    local path="$1"
+
+    if [ -e "$path" ]; then
+        echo -e "${RED}Removing existing $path${NC}"
+        rm -rf "$path"
+    fi
+}
+
+echo -e "${RED}This setup will remove existing configuration.${NC}"
+read -p "Are you sure want to proceed? (yes/no) " confirm
+
+if [ "$confirm" != "yes" ]; then
+    echo "Aborted."
+    exit 1
+fi
+
+# Bash
+remove_if_exists "$HOME/.bashrc.d"
+remove_if_exists "$HOME/.bashrc"
+ln -s "$(realpath .bashrc.d)" "$HOME/.bashrc.d"
+ln -s "$(realpath .bashrc)" "$HOME/.bashrc"
+
+# Neovim
+remove_if_exists "$CONFIG/nvim"
+ln -s "$(realpath nvim)" "$CONFIG/nvim"
+
+# Starship
+remove_if_exists "$CONFIG/starship.toml"
+ln -s "$(realpath starship.toml)" "$CONFIG/starship.toml"
+
+# Zed
+remove_if_exists "$CONFIG/zed"
+ln -s "$(realpath zed)" "$CONFIG/zed"
+
+echo -e "${GREEN}Done.${NC}"
+exit 0
