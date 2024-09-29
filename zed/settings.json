@@ -7,18 +7,16 @@
     "version": "2"
   },
   "auto_install_extensions": {
-    "catppuccin": true,
-    "dockerfile": true,
     "git-firefly": true,
-    "html": true,
-    "ruff": true,
-    "toml": true
+    "ruff": true
   },
   "cursor_blink": false,
+  "features": {
+    "inline_completion_provider": "supermaven"
+  },
   "formatter": "prettier",
   "languages": {
     "Python": {
-      "format_on_save": "on",
       "formatter": [
         {
           "code_actions": {
@@ -34,12 +32,17 @@
       "language_servers": ["pyright", "ruff"],
       "tab_size": 4
     },
-    "Shell Script": {
-      "tab_size": 4
+    "TSX": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
     }
   },
-  "relative_line_numbers": true,
-  "restore_on_startup": "last_workspace",
   "tab_size": 2,
   "terminal": {
     "blinking": "off",
@@ -47,11 +50,7 @@
       "EDITOR": "zed --wait"
     }
   },
-  "theme": {
-    "dark": "Catppuccin Mocha",
-    "light": "Catppuccin Latte",
-    "mode": "system"
-  },
+  "theme": "Andromeda",
   "vim_mode": true,
   "wrap_guides": [80]
 }

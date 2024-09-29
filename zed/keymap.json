@@ -9,6 +9,13 @@
     }
   },
   {
+    "context": "Editor && vim_mode == visual && !menu",
+    "bindings": {
+      "ctrl-space": "editor::SelectLargerSyntaxNode",
+      "backspace": "editor::SelectSmallerSyntaxNode"
+    }
+  },
+  {
     "context": "VimControl && !menu && vim_mode != operator",
     "bindings": {
       "w": "vim::NextSubwordStart",
