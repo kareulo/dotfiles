@@ -16,6 +16,11 @@
   },
   "formatter": "prettier",
   "languages": {
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
     "Python": {
       "formatter": [
         {
@@ -50,7 +55,11 @@
       "EDITOR": "zed --wait"
     }
   },
-  "theme": "Andromeda",
+  "theme": {
+    "dark": "Rosé Pine",
+    "light": "Rosé Pine Dawn",
+    "mode": "system"
+  },
   "vim_mode": true,
   "wrap_guides": [80]
 }
