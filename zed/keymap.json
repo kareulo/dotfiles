@@ -1,0 +1,32 @@
+[
+    {
+        "context": "Dock || EmptyPane",
+        "bindings": {
+            "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
+            "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"],
+            "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
+            "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"]
+        }
+    },
+    {
+        "context": "VimControl && !menu && vim_mode != operator",
+        "bindings": {
+            "b": "vim::PreviousSubwordStart",
+            "e": "vim::NextSubwordEnd",
+            "g e": "vim::PreviousSubwordEnd",
+            "w": "vim::NextSubwordStart"
+        }
+    },
+    {
+        "context": "vim_mode == visual",
+        "bindings": {
+            "shift-s": ["vim::PushOperator", { "AddSurrounds": {} }]
+        }
+    },
+    {
+        "context": "vim_mode == normal && !menu",
+        "bindings": {
+            "shift-y": ["workspace::SendKeystrokes", "y $"]
+        }
+    }
+]
