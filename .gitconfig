@@ -1,5 +1,7 @@
 [init]
 	defaultBranch = master
+[core]
+	editor = /usr/bin/nvim
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]

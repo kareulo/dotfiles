@@ -2,15 +2,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.markdown_recommended_style = 0
 
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.smartindent = true
-vim.opt.tabstop = 4
-
 vim.opt.clipboard = "unnamedplus"
 vim.opt.colorcolumn = "80"
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.cursorline = true
+vim.opt.expandtab = true
 vim.opt.formatoptions = "jcroqlnt"
 vim.opt.ignorecase = true
 vim.opt.inccommand = "nosplit"
@@ -24,12 +20,15 @@ vim.opt.relativenumber = true
 vim.opt.ruler = false
 vim.opt.scrolloff = 999
 vim.opt.shiftround = true
+vim.opt.shiftwidth = 4
 vim.opt.shortmess:append({ W = true, I = true, C = true, c = true })
 vim.opt.signcolumn = "yes"
+vim.opt.smartindent = true
 vim.opt.spelllang = { "en" }
 vim.opt.splitbelow = true
 vim.opt.splitkeep = "screen"
 vim.opt.splitright = true
+vim.opt.tabstop = 4
 vim.opt.termguicolors = true
 vim.opt.timeoutlen = 200
 vim.opt.undofile = true
