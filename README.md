@@ -24,7 +24,7 @@ Dotfiles repository for Fedora Linux.
   dnf install neovim
   ```
 
-- **PNPM**
+- **Node.js + PNPM**
 
   ```sh
   curl -o- https://fnm.vercel.app/install | bash
