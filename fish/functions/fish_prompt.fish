@@ -1,61 +1,28 @@
 function fish_prompt
-    set -l last_pipestatus $pipestatus
-    set -lx __fish_last_status $status
+    set -q fish_color_status; or set -g fish_color_status red
 
-    if not set -q __fish_git_prompt_show_informative_status
-        set -g __fish_git_prompt_show_informative_status 1
-    end
-    if not set -q __fish_git_prompt_hide_untrackedfiles
-        set -g __fish_git_prompt_hide_untrackedfiles 1
-    end
-    if not set -q __fish_git_prompt_color_branch
-        set -g __fish_git_prompt_color_branch magenta --bold
-    end
-    if not set -q __fish_git_prompt_showupstream
-        set -g __fish_git_prompt_showupstream informative
-    end
-    if not set -q __fish_git_prompt_color_dirtystate
-        set -g __fish_git_prompt_color_dirtystate blue
-    end
-    if not set -q __fish_git_prompt_color_stagedstate
-        set -g __fish_git_prompt_color_stagedstate yellow
-    end
-    if not set -q __fish_git_prompt_color_invalidstate
-        set -g __fish_git_prompt_color_invalidstate red
-    end
-    if not set -q __fish_git_prompt_color_untrackedfiles
-        set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
-    end
-    if not set -q __fish_git_prompt_color_cleanstate
-        set -g __fish_git_prompt_color_cleanstate green --bold
-    end
+    set -l color_cwd $fish_color_cwd
+    set -l suffix λ
 
-    set -l color_cwd
-    set -l suffix
     if functions -q fish_is_root_user; and fish_is_root_user
-        if set -q fish_color_cwd_root
-            set color_cwd $fish_color_cwd_root
-        else
-            set color_cwd $fish_color_cwd
-        end
-        set suffix '#'
-    else
-        set color_cwd $fish_color_cwd
-        set suffix λ
+        set suffix Λ
     end
 
-    # PWD
-    set_color $color_cwd
-    echo -n (prompt_pwd)
-    set_color normal
+    set -l normal (set_color normal)
 
-    printf '%s ' (fish_vcs_prompt)
+    set -lx __fish_last_status $status
+    set -l last_pipestatus $pipestatus
+    set -l bold_flag --bold
+
+    set -q __fish_prompt_status_generation; or set -g __fish_prompt_status_generation $status_generation
+    if test $__fish_prompt_status_generation = $status_generation
+        set bold_flag
+    end
+    set __fish_prompt_status_generation $status_generation
 
     set -l status_color (set_color $fish_color_status)
-    set -l statusb_color (set_color --bold $fish_color_status)
+    set -l statusb_color (set_color $bold_flag $fish_color_status)
     set -l prompt_status (__fish_print_pipestatus "[" "]" "|" "$status_color" "$statusb_color" $last_pipestatus)
-    echo -n $prompt_status
-    set_color normal
 
-    echo -n "$suffix "
+    echo -n -s (set_color $color_cwd) (prompt_pwd -d 1) $normal (fish_vcs_prompt) $normal " " $prompt_status $suffix " "
 end
