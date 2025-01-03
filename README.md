@@ -1,20 +1,24 @@
 # .dotfiles
 
-This repository contains the dotfiles for **Fedora 41 KDE on AMD laptops**.
+This repository contains my personal **dotfiles** for setting up **Fedora 41 KDE** on an **AMD laptop**.
 
-## Step-by-step Guide
+## Quick Setup
 
-A simple guide to get your **freshly installed** Fedora 41 KDE on AMD laptop up and running.
+Follow this guide to set up your **freshly installed** Fedora 41 KDE system with ease.
 
-### 1. Change Hostname
+### 1. Set Hostname
+
+Change your system's hostname to something more personal:
 
 ```sh
-hostnamectl hostname HOSTNAME
+hostnamectl set-hostname YOUR_HOSTNAME
 ```
 
-> Replace `HOSTNAME` with your preferred name.
+> Replace `YOUR_HOSTNAME` with your desired name.
 
-### 2. Remove Bloatware
+### 2. Remove Unwanted Software
+
+Remove pre-installed applications you likely won't use:
 
 ```sh
 dnf remove akregator kaddressbook kmahjongg kmines \
@@ -23,15 +27,19 @@ dnf remove akregator kaddressbook kmahjongg kmines \
 dnf autoremove
 ```
 
-### 3. Disable Baloo
+### 3. Disable and Purge Baloo
+
+Disable Baloo's indexing service to save resources:
 
 ```sh
-balooctl6 suspend
-balooctl6 disable
-balooctl6 purge
+balooctl suspend
+balooctl disable
+balooctl purge
 ```
 
 ### 4. Install Git
+
+Install Git without unnecessary dependencies:
 
 ```sh
 dnf install --set-opt=install_weak_deps=False git
@@ -39,11 +47,15 @@ dnf install --set-opt=install_weak_deps=False git
 
 ### 5. Clone Dotfiles
 
+Clone this repository to your home directory:
+
 ```sh
 git clone https://github.com/kareulo/dotfiles.git ~/.dotfiles
 ```
 
-### 6. Sync Dotfiles
+### 6. Link Configuration
+
+Symlink the configuration directories and files to their respective locations:
 
 ```sh
 cd ~/.dotfiles
@@ -53,52 +65,59 @@ ln -sf $(realpath .gitconfig) ~/.gitconfig
 ln -sf $(realpath dnf.conf) /etc/dnf/dnf.conf
 ```
 
-### 7. Upgrade System
+### 7. System Update
+
+Update your system and reboot to apply changes:
 
 ```sh
-dnf update
+dnf update -y
 reboot
 ```
 
-### 8. Enable H/W Video Decoding with VA-API
+### 8. Enable Hardware Video Decoding (VA-API)
+
+Install VA-API to improve video performance and save battery:
 
 ```sh
 dnf install ffmpeg-libs libva libva-utils mesa-va-drivers mesa-vdpau-drivers
 ```
 
-> VA-API improves video decoding performance, extends battery life, and saves CPU power by offloading decoding to the GPU.
+### 9. Install Essential Applications
 
-### 9. Install Software
+#### Fish Shell
 
-- **Fish Shell**
+Fish shell makes your terminal more powerful and user-friendly:
 
-  ```sh
-  dnf install fish
-  chsh -s $(which fish) # Set Fish as the default shell
-  ```
+```sh
+dnf install fish
+chsh -s $(which fish) # Set Fish as the default shell
+```
 
-- **GitHub CLI**
+#### GitHub CLI
 
-  ```sh
-  dnf install dnf5-plugins
-  dnf config-manager addrepo --from-repofile=https://cli.github.com/packages/rpm/gh-cli.repo
-  dnf install gh --repo gh-cli
-  ```
+For seamless GitHub interactions from the terminal:
 
-- **Neovim**
+```sh
+dnf install dnf5-plugins
+dnf config-manager addrepo --from-repofile=https://cli.github.com/packages/rpm/gh-cli.repo
+dnf install gh --repo gh-cli
+```
 
-  ```sh
-  dnf install neovim wl-clipboard
-  ```
+#### Neovim
 
-- **Node.js + PNPM**
+**I use Neovim BTW:**
 
-  ```sh
-  curl -o- https://fnm.vercel.app/install | bash
-  fnm install NODE_VERSION
-  corepack enable pnpm
-  ```
+```sh
+dnf install neovim wl-clipboard
+```
 
-  > Replace `NODE_VERSION` with your desired version.
+### 10. Install Flatpak Applications
 
-Happy coding!
+Install the following applications via **Discover**:
+
+- **VSCode**
+- **Obsidian**
+
+---
+
+Happy coding! 🚀
